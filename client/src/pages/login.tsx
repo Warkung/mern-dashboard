@@ -9,10 +9,10 @@ import { ThemedTitle } from "@refinedev/mui";
 import { CredentialResponse } from "../interfaces/google";
 
 // Todo: Update your Google Client ID here
-const GOOGLE_CLIENT_ID =
-  "945914784883-j2ena3lalpslo18sj8c1htkkoe2t5eqv.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
 
 export const Login: React.FC = () => {
+  
   const { mutate: login } = useLogin<CredentialResponse>();
 
   const GoogleButton = () => {

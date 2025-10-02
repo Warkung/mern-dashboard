@@ -217,7 +217,10 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
                 pl: isNested ? 4 : 2,
                 py: isNested ? 1.25 : 1,
                 justifyContent: "center",
-                color: isSelected ? "primary.main" : "text.primary",
+                color: isSelected ? "primary.main" : "",
+                padding: " 10px",
+                margin: " 10px",
+                borderRadius: "8px",
               }}
             >
               <ListItemIcon
@@ -267,6 +270,9 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
               py: 1,
               justifyContent: "center",
               color: selectedKey === "/" ? "primary.main" : "text.primary",
+              padding: " 10px",
+              margin: " 10px",
+              borderRadius: "8px",
             }}
           >
             <ListItemIcon
@@ -324,6 +330,9 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
         onClick={() => handleLogout()}
         sx={{
           justifyContent: "center",
+          padding: " 10px",
+          margin: " 10px",
+          borderRadius: "8px",
         }}
       >
         <ListItemIcon
@@ -360,7 +369,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     }
     return (
       <>
-        {dashboard}
         {items}
         {logout}
       </>

@@ -1,19 +1,26 @@
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import { Box, Typography } from "@mui/material";
+import LogoDevIcon from "@mui/icons-material/LogoDev";
+import { Box, Button, Link, Typography } from "@mui/material";
 
 export default function Title({ collapsed }: any) {
   return (
     <div>
-      <Box display="flex" alignItems="center" gap="8px">
-        <DashboardIcon />
+      <Link
+        href="/"
+        underline="none"
+        display="flex"
+        alignItems="center"
+        gap="8px"
+      >
+        <LogoDevIcon fontSize="large" />
         <Typography
           variant="h6"
           fontWeight={700}
+          color=""
           display={collapsed ? "none" : "block"}
         >
-          Dashboard
+          LOGO
         </Typography>
-      </Box>
+      </Link>
     </div>
   );
 }
