@@ -22,6 +22,12 @@ import routerProvider, {
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
+import {
+  DashboardOutlined,
+  PeopleAltOutlined,
+  VillaOutlined,
+} from "@mui/icons-material";
+
 import axios from "axios";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import { Header } from "./components/header";
@@ -145,15 +151,26 @@ function App() {
                 authProvider={authProvider}
                 resources={[
                   {
-                    name: "home",
+                    name: "dashboard",
                     list: "/",
                     meta: {
-                      canDelete: true,
+                      icon: <DashboardOutlined />,
                     },
                   },
                   {
                     name: "agents",
-                    list: "/agent",
+                    list: "/agents",
+                    show: "/agents/:id",
+                    meta: {
+                      icon: <PeopleAltOutlined />,
+                    },
+                  },
+                  {
+                    name: "properties",
+                    list: "/properties",
+                    meta: {
+                      icon: <VillaOutlined />,
+                    },
                   },
                 ]}
                 options={{
@@ -177,8 +194,8 @@ function App() {
                   >
                     <Route path="/">
                       <Route index element={<HomePage />} />
-                      <Route path="agent" element={<Agent />} />
-                      <Route path="property" element={<AllProperty />} />
+                      <Route path="agents" element={<Agent />} />
+                      <Route path="properties" element={<AllProperty />} />
                     </Route>
 
                     <Route path="*" element={<ErrorComponent />} />
