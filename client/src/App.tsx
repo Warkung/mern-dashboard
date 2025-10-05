@@ -23,9 +23,12 @@ import routerProvider, {
 } from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import {
+  AccountCircleOutlined,
+  ChatBubbleOutline,
   DashboardOutlined,
   PeopleAltOutlined,
   VillaOutlined,
+  StarOutlineOutlined,
 } from "@mui/icons-material";
 
 import axios from "axios";
@@ -47,6 +50,8 @@ import {
   HomePage,
   PropertyDetail,
 } from "./pages/index";
+import Reviews from "./pages/Reviews";
+import Messages from "./pages/Messages";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((config) => {
@@ -158,18 +163,38 @@ function App() {
                     },
                   },
                   {
+                    name: "properties",
+                    list: "/properties",
+                    meta: {
+                      icon: <VillaOutlined />,
+                    },
+                  },
+                  {
                     name: "agents",
                     list: "/agents",
-                    show: "/agents/:id",
                     meta: {
                       icon: <PeopleAltOutlined />,
                     },
                   },
                   {
-                    name: "properties",
-                    list: "/properties",
+                    name: "reviews",
+                    list: "/reviews",
                     meta: {
-                      icon: <VillaOutlined />,
+                      icon: <StarOutlineOutlined />,
+                    },
+                  },
+                  {
+                    name: "messages",
+                    list: "/messages",
+                    meta: {
+                      icon: <ChatBubbleOutline />,
+                    },
+                  },
+                  {
+                    name: "my-profile",
+                    list: "/my-profile",
+                    meta: {
+                      icon: <AccountCircleOutlined />,
                     },
                   },
                 ]}
@@ -194,8 +219,11 @@ function App() {
                   >
                     <Route path="/">
                       <Route index element={<HomePage />} />
-                      <Route path="agents" element={<Agent />} />
                       <Route path="properties" element={<AllProperty />} />
+                      <Route path="agents" element={<Agent />} />
+                      <Route path="reviews" element={<Reviews />} />
+                      <Route path="messages" element={<Messages />} />
+                      <Route path="my-profile" element={<AgentProfile />} />
                     </Route>
 
                     <Route path="*" element={<ErrorComponent />} />

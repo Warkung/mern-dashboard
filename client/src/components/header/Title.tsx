@@ -1,6 +1,7 @@
 import LogoDevIcon from "@mui/icons-material/LogoDev";
 import { Box, Button, Link, Typography } from "@mui/material";
 
+
 export default function Title({ collapsed }: any) {
   return (
     <div>
