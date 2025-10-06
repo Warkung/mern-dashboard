@@ -1,13 +1,24 @@
 import {
   Box,
   FormControl,
-  FormHelperText,
-  TextareaAutosize,
   TextField,
-  styled,
   Typography,
+  Stack,
+  autocompleteClasses,
+  Select,
+  MenuItem,
+  InputLabel,
 } from "@mui/material";
 import { FormProps } from "../../interfaces/common";
+
+const itemForSelect = [
+  { value: "house", label: "House" },
+  { value: "apartment", label: "Apartment" },
+  { value: "villa", label: "Villa" },
+  { value: "farmhouse", label: "Farmhouse" },
+  { value: "condos", label: "Condos" },
+  { value: "townhouse", label: "Townhouse" },
+];
 
 export default function Form({
   type,
@@ -19,26 +30,6 @@ export default function Form({
   onFinishHandler,
   PropertyImages,
 }: FormProps) {
-  const StyledTextarea = styled(TextareaAutosize)(
-    ({ theme }) => `
-    width: 100%;
-    background-color: transparent;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5;
-    padding: 12px;
-    border-radius: 5px;
-    color: ${theme.palette.text.primary};
-    border: 1px solid ${theme.palette.mode === "dark" ? "#434343" : "#E0E0E0"};
-    
-    &:focus, &:focus-visible {
-      border-color: ${theme.palette.info.main};
-      box-shadow: 0 0 0 2px ${theme.palette.info.light};
-      outline: 0;
-    }
-  `
-  );
-
   return (
     <Box>
       <Typography
@@ -48,6 +39,7 @@ export default function Form({
       >
         {type} a property
       </Typography>
+
       <Box mt={2.5} borderRadius={"15px"} padding={"20px"}>
         <form
           action=""
@@ -60,38 +52,49 @@ export default function Form({
           }}
           // onSubmit={handleSubmit(onFinishHandler)}
         >
-          <FormControl>
-            <FormHelperText
-              sx={{
-                fontWeight: 500,
-                margin: "10px 0",
-                fontSize: 16,
-              }}
-            >
-              Enter property name
-            </FormHelperText>
-            <TextField
-              fullWidth
-              required
-              color="info"
-              // {...register("title", { required: true })}
-            />
-            <FormHelperText
-              sx={{
-                fontWeight: 500,
-                margin: "10px 0",
-                fontSize: 16,
-              }}
-            >
-              Enter property description
-            </FormHelperText>
-            <StyledTextarea
-              minRows={5}
-              required
-              placeholder="Please insert description"
-              // {...register("description", { required: true })}
-            />
-          </FormControl>
+          <TextField
+            fullWidth
+            required
+            color="info"
+            label="Enter property name"
+            // {...register("title", { required: true })}
+          />
+          <TextField
+            fullWidth
+            required
+            color="info"
+            label="Enter property description"
+            multiline
+            rows={5}
+            // {...register("description", { required: true })}
+          />
+
+          <Stack direction={"row"} gap={4}>
+            <FormControl sx={{ flex: 1 }}>
+              <InputLabel shrink id="property-type-select-label">
+                Select Property Type
+              </InputLabel>
+              <Select
+                label="Select Property Type"
+                labelId="property-type-select-label"
+                variant="outlined"
+                color="info"
+                displayEmpty
+                required
+                defaultValue=""
+                // {...register("propertyType", { required: true })}
+              >
+                <MenuItem value="" disabled>
+                  <em>Select Property Type</em>
+                </MenuItem>
+                {itemForSelect.map((item) => (
+                  <MenuItem key={item.value} value={item.value}>
+                    {item.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Stack>
         </form>
       </Box>
     </Box>
