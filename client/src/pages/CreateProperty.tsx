@@ -1,5 +1,8 @@
+import { useGetIdentity } from "@refinedev/core";
+import { Form } from "../components";
+
 export default function CreateProperty() {
-  return (
-    <div>CreateProperty</div>
-  )
+  const { data: user } = useGetIdentity();
+
+  return <Form type="create" />;
 }

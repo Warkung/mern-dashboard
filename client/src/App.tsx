@@ -165,6 +165,7 @@ function App() {
                   {
                     name: "properties",
                     list: "/properties",
+                    create: "/properties/create",
                     meta: {
                       icon: <VillaOutlined />,
                     },
@@ -219,11 +220,15 @@ function App() {
                   >
                     <Route path="/">
                       <Route index element={<HomePage />} />
-                      <Route path="properties" element={<AllProperty />} />
                       <Route path="agents" element={<Agent />} />
                       <Route path="reviews" element={<Reviews />} />
                       <Route path="messages" element={<Messages />} />
                       <Route path="my-profile" element={<AgentProfile />} />
+                    </Route>
+
+                    <Route path="/properties">
+                      <Route index element={<AllProperty />} />
+                      <Route path="create" element={<CreateProperty />} />
                     </Route>
 
                     <Route path="*" element={<ErrorComponent />} />
