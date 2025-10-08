@@ -7,9 +7,9 @@ const {
   deleteProperty,
 } = require("../controllers/property");
 
-router.route("/").get(getAllProperties).post(createProperty);
+router.route("/properties").get(getAllProperties).post(createProperty);
 router
-  .route("/:id")
+  .route("/property/:id")
   .get(getPropertyDetail)
   .put(updateProperty)
   .patch(updateProperty)

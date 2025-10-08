@@ -5,7 +5,7 @@ const {
   createProperty,
 } = require("../controllers/property");
 
-router.route("/").get(getAllProperties).post(createProperty);
-router.route("/:id").get(getPropertyDetail);
+router.route("/users").get(getAllProperties).post(createProperty);
+router.route("/user/:id").get(getPropertyDetail);
 
 module.exports = router;
