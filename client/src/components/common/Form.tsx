@@ -1,24 +1,24 @@
 import {
   Box,
+  Button,
   FormControl,
   TextField,
   Typography,
   Stack,
-  autocompleteClasses,
   Select,
   MenuItem,
   InputLabel,
 } from "@mui/material";
+import { PhotoCamera } from "@mui/icons-material";
 import { FormProps } from "../../interfaces/common";
 import CustomButton from "./CustomButton";
 
 const itemForSelect = [
-  { value: "house", label: "House" },
-  { value: "apartment", label: "Apartment" },
-  { value: "villa", label: "Villa" },
-  { value: "farmhouse", label: "Farmhouse" },
-  { value: "condos", label: "Condos" },
-  { value: "townhouse", label: "Townhouse" },
+  { value: "apartment" },
+  { value: "villa" },
+  { value: "farmhouse" },
+  { value: "condos" },
+  { value: "studio" },
 ];
 
 export default function Form({
@@ -78,7 +78,7 @@ export default function Form({
           />
 
           <Stack direction={{ xs: "column", sm: "row" }} gap={2}>
-            <FormControl sx={{ flex: 1 }}>
+            <FormControl sx={{ flex: 2 }}>
               <InputLabel shrink id="property-type-select-label">
                 Select Property Type
               </InputLabel>
@@ -90,14 +90,19 @@ export default function Form({
                 displayEmpty
                 required
                 defaultValue=""
+                sx={{ textTransform: "capitalize" }}
                 // {...register("propertyType", { required: true })}
               >
                 <MenuItem value="" disabled>
-                  <em>Select Property Type</em>
+                  <em style={{ color: "#aca5a5ff" }}>Select Property Type</em>
                 </MenuItem>
-                {itemForSelect.map((item) => (
-                  <MenuItem key={item.value} value={item.value}>
-                    {item.label}
+                {itemForSelect.map((item, index) => (
+                  <MenuItem
+                    key={index}
+                    value={item.value}
+                    sx={{ textTransform: "capitalize" }}
+                  >
+                    {item.value}
                   </MenuItem>
                 ))}
               </Select>
@@ -120,12 +125,48 @@ export default function Form({
             label="Location"
             // {...register("location", { required: true })}
           />
+
+          <Stack direction="column" gap={1} justifyContent="center" mb={2}>
+            <Stack direction="row" gap={2}>
+              <Typography fontSize={16} fontWeight={500} my="10px">
+                Property Photo
+              </Typography>
+
+              <Button
+                component="label"
+                sx={{
+                  width: "fit-content",
+                  color: "#2ed480",
+                  textTransform: "capitalize",
+                  fontSize: 16,
+                }}
+              >
+                <PhotoCamera sx={{ marginRight: "8px" }} />
+                Upload
+                <input
+                  hidden
+                  accept="image/*"
+                  type="file"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleImageChange(e.target.files![0])
+                  }
+                />
+              </Button>
+            </Stack>
+            <Typography
+              fontSize={14}
+              color="#808191"
+              sx={{ wordBreak: "break-all" }}
+            >
+              {PropertyImages?.name || "No file selected"}
+            </Typography>
+          </Stack>
+
           <Stack direction={"column"} gap={1} justifyContent={"center"}>
-            
             <Stack>
               <CustomButton
                 type={type}
-                title="Submit"
+                title={formLoading ? "Submitting..." : "Submit"}
                 backgroundColor="#475be8"
                 color="white"
               />
