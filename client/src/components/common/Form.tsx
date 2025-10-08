@@ -113,7 +113,15 @@ export default function Form({
               />
             </Stack>
           </Stack>
+          <TextField
+            fullWidth
+            required
+            color="info"
+            label="Location"
+            // {...register("location", { required: true })}
+          />
           <Stack direction={"column"} gap={1} justifyContent={"center"}>
+            
             <Stack>
               <CustomButton
                 type={type}
