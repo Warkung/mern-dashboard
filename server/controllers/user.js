@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const userModel = require("../models/user");
 const { internalError } = require("../function/internalError");
 
-const getAllUsers = async (req, res) => {
+export const getAllUsers = async (req, res) => {
   try {
     const users = await userModel
       .find({})
@@ -14,7 +14,7 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-const createUser = async (req, res) => {
+export const createUser = async (req, res) => {
   try {
     const { name, email, avatar } = req.body;
     const userExists = await userModel.findOne({ email });
@@ -26,7 +26,7 @@ const createUser = async (req, res) => {
   }
 };
 
-const getUserById = async (req, res) => {
+export const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await userModel.findOne({ _id: id }).populate("allProperties");
@@ -35,10 +35,4 @@ const getUserById = async (req, res) => {
   } catch (error) {
     internalError(error, res);
   }
-};
-
-module.exports = {
-  getAllUsers,
-  createUser,
-  getUserById,
 };
