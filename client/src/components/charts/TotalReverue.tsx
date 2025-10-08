@@ -12,6 +12,7 @@ export default function TotalReverue() {
       p={4}
       bgcolor={"#fcfcfc"}
       borderRadius={"15px"}
+      boxShadow={"0 0 10px rgba(0,0,0,0.2)"}
     >
       <Typography fontSize={18} fontWeight={600} color="#11142d">
         Total Revernue

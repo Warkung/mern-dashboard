@@ -18,6 +18,7 @@ export default function PieChart({ title, value, colors, series }: Piechart) {
       borderRadius={"15px"}
       minHeight={"110px"}
       width={"fit-content"}
+      boxShadow={"0 0 10px rgba(0,0,0,0.2)"}
     >
       <Stack direction={"column"}>
         <Typography

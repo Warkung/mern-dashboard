@@ -11,6 +11,7 @@ export default function PropertyReferral() {
       display={"flex"}
       flexDirection={"column"}
       borderRadius={"15px"}
+      boxShadow={"0 0 10px rgba(0,0,0,0.2)"}
     >
       <Typography fontSize={15} fontWeight={600} color="#11142d">
         Property Referral

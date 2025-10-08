@@ -8,7 +8,7 @@ export default function HomePage() {
       <Typography fontSize={40} fontWeight={700} fontFamily={"Roboto"}>
         Dash Board
       </Typography>
-      <Box mt={"20px"} display={"flex"} gap={4} flexWrap={"wrap"}>
+      <Box mt={"20px"} display={"flex"} gap={4} flexWrap={"wrap"} >
         {piechartData.map((item, index) => (
           <PieChart
             key={index}
