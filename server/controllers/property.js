@@ -42,7 +42,7 @@ export const getAllProperties = async (req, res) => {
   }
 };
 
-export const propertyDetail = async (req, res) => {
+export const getPropertyDetail = async (req, res) => {
   try {
     const { id } = req.params;
     const propertyExists = await propertyModel.findOne({ _id: id });
