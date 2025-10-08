@@ -10,7 +10,7 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
-export const getAllProperties = async (req, res) => {
+const getAllProperties = async (req, res) => {
   try {
     const {
       _end,
@@ -42,7 +42,7 @@ export const getAllProperties = async (req, res) => {
   }
 };
 
-export const getPropertyDetail = async (req, res) => {
+const getPropertyDetail = async (req, res) => {
   try {
     const { id } = req.params;
     const propertyExists = await propertyModel.findOne({ _id: id });
@@ -53,7 +53,7 @@ export const getPropertyDetail = async (req, res) => {
   }
 };
 
-export const createProperty = async (req, res) => {
+const createProperty = async (req, res) => {
   try {
     const { title, propertyType, description, location, price, email, photo } =
       req.body;
@@ -83,7 +83,7 @@ export const createProperty = async (req, res) => {
   }
 };
 
-export const updateProperty = async (req, res) => {
+const updateProperty = async (req, res) => {
   try {
     const { id } = req.params;
     const { title, propertyType, description, location, price, photo } =
@@ -109,7 +109,7 @@ export const updateProperty = async (req, res) => {
   }
 };
 
-export const deleteProperty = async (req, res) => {
+const deleteProperty = async (req, res) => {
   try {
     const { id } = req.params;
     const propertyExists = await propertyModel
@@ -130,4 +130,12 @@ export const deleteProperty = async (req, res) => {
   } catch (error) {
     internalError(error, res);
   }
+};
+
+module.exports = {
+  getAllProperties,
+  getPropertyDetail,
+  createProperty,
+  updateProperty,
+  deleteProperty,
 };
