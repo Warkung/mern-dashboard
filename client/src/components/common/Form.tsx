@@ -121,7 +121,13 @@ export default function Form({
             {...register("location", { required: true })}
           />
 
-          <Stack direction="column" gap={1} justifyContent="center" mb={2}>
+          <Stack
+            direction={{ lg: "row", xs: "column" }}
+            gap={2}
+            alignItems={{ lg: "center", xs: "flex-start" }}
+            justifyContent={"space-between"}
+            mb={2}
+          >
             <Stack direction="row" gap={2}>
               <Button
                 component="label"
@@ -133,7 +139,7 @@ export default function Form({
                 }}
               >
                 <PhotoCamera sx={{ marginRight: "8px" }} />
-                Upload Property Photo
+                Upload Image
                 <input
                   hidden
                   accept="image/*"
@@ -144,13 +150,23 @@ export default function Form({
                 />
               </Button>
             </Stack>
-            <Typography
-              fontSize={14}
-              color="#808191"
-              sx={{ wordBreak: "break-all" }}
-            >
-              {propertyImage?.name || "No file selected"}
-            </Typography>
+            {propertyImage?.url && (
+              <Typography
+                border={1}
+                borderColor={"#808191"}
+                borderRadius={1}
+                padding={"0.5rem 2rem"}
+                maxWidth={"400px"}
+                maxHeight={"34px"}
+                overflow={"hidden"}
+                textAlign={"center"}
+                fontSize={14}
+                color="#808191"
+                sx={{ wordBreak: "break-all" }}
+              >
+                Image: {propertyImage?.name}
+              </Typography>
+            )}
           </Stack>
 
           <Stack direction={"column"} gap={1} justifyContent={"center"}>
@@ -160,12 +176,26 @@ export default function Form({
                 variant="contained"
                 color="primary"
                 disabled={formLoading}
-                sx={{ backgroundColor: "#475be8", color: "white" }}
+                sx={{
+                  fontFamily: "inherit",
+                  backgroundColor: "#475be8",
+                  color: "white",
+                  fontSize: "16px",
+                  fontWeight: 600,
+                  textTransform: "capitalize",
+                  borderRadius: "10px",
+                  padding: "10px 20px",
+
+                  "&:hover": {
+                    opacity: 0.9,
+                    backgroundColor: "#475be8",
+                  },
+                }}
               >
                 {formLoading ? (
                   <CircularProgress size={24} sx={{ color: "white" }} />
                 ) : (
-                  "Submit"
+                  "Create Property"
                 )}
               </Button>
             </Stack>
