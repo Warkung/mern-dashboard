@@ -24,21 +24,17 @@ const itemForSelect = [
 export default function Form({
   type,
   register,
-  onFinish,
   formLoading,
   handleSubmit,
   handleImageChange,
-  onFinishHandler,
   PropertyImages,
 }: FormProps) {
   return (
     <Box
-      border={"1px solid #524c4cff"}
       margin={"auto"}
       width={{ lg: "70%", md: "80%", xs: "90%" }}
-      padding={{ lg: "20px", md: "10px", xs: "10px" }}
-      boxShadow={"0 0 10px rgba(0,0,0,0.1)"}
-      borderRadius={2}
+      paddingInline={{ lg: 10, md: 5, xs: 2 }}
+      
     >
       <Typography
         fontSize={25}
@@ -48,9 +44,9 @@ export default function Form({
         {type} a property
       </Typography>
 
-      <Box mt={2.5} borderRadius={"15px"}>
+      <Box>
         <form
-          action=""
+          action={""}
           style={{
             marginTop: "20px",
             width: "100%",
@@ -58,14 +54,14 @@ export default function Form({
             flexDirection: "column",
             gap: "20px",
           }}
-          // onSubmit={handleSubmit(onFinishHandler)}
+          onSubmit={handleSubmit}
         >
           <TextField
             fullWidth
             required
             color="info"
             label="Property name"
-            // {...register("title", { required: true })}
+            {...register("title", { required: true })}
           />
           <TextField
             fullWidth
@@ -74,7 +70,7 @@ export default function Form({
             label="Property description"
             multiline
             rows={5}
-            // {...register("description", { required: true })}
+            {...register("description", { required: true })}
           />
 
           <Stack direction={{ xs: "column", sm: "row" }} gap={2}>
@@ -91,7 +87,7 @@ export default function Form({
                 required
                 defaultValue=""
                 sx={{ textTransform: "capitalize" }}
-                // {...register("propertyType", { required: true })}
+                {...register("propertyType", { required: true })}
               >
                 <MenuItem value="" disabled>
                   <em style={{ color: "#aca5a5ff" }}>Select Property Type</em>
@@ -114,7 +110,7 @@ export default function Form({
                 color="info"
                 label="Property price"
                 type="number"
-                // {...register("price", { required: true })}
+                {...register("price", { required: true })}
               />
             </Stack>
           </Stack>
@@ -123,26 +119,22 @@ export default function Form({
             required
             color="info"
             label="Location"
-            // {...register("location", { required: true })}
+            {...register("location", { required: true })}
           />
 
           <Stack direction="column" gap={1} justifyContent="center" mb={2}>
             <Stack direction="row" gap={2}>
-              <Typography fontSize={16} fontWeight={500} my="10px">
-                Property Photo
-              </Typography>
-
               <Button
                 component="label"
+                variant="outlined"
+                color="info"
                 sx={{
                   width: "fit-content",
-                  color: "#2ed480",
                   textTransform: "capitalize",
-                  fontSize: 16,
                 }}
               >
                 <PhotoCamera sx={{ marginRight: "8px" }} />
-                Upload
+                Upload Property Photo
                 <input
                   hidden
                   accept="image/*"

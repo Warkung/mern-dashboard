@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const userModel = require("../models/user");
 const { internalError } = require("../function/internalError");
 
-export const getAllUsers = async (req, res) => {
+exports.getAllUsers = async (req, res) => {
   try {
     const users = await userModel
       .find({})
@@ -14,11 +14,11 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-export const createUser = async (req, res) => {
+exports.createUser = async (req, res) => {
   try {
     const { name, email, avatar } = req.body;
     const userExists = await userModel.findOne({ email });
-    if (userExists) return res.status(409).send("User already exists");
+    if (userExists) return res.status(200).send(userExists);
     const newUser = await userModel.create({ name, email, avatar });
     res.status(201).send(newUser);
   } catch (error) {
@@ -26,7 +26,7 @@ export const createUser = async (req, res) => {
   }
 };
 
-export const getUserById = async (req, res) => {
+exports.getUserById = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await userModel.findOne({ _id: id }).populate("allProperties");

@@ -69,16 +69,27 @@ function App() {
       const profileObj = credential ? parseJwt(credential) : null;
 
       if (profileObj) {
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            ...profileObj,
+        const res = await axiosInstance.post(
+          "http://localhost:8080/api/users",
+          {
+            email: profileObj.email,
+            name: profileObj.name,
             avatar: profileObj.picture,
-          })
+          }
         );
 
-        localStorage.setItem("token", `${credential}`);
+        if (res.status === 200) {
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              ...profileObj,
+              avatar: profileObj.picture,
+              userid: res.data._id,
+            })
+          );
+        }
 
+        localStorage.setItem("token", `${credential}`);
         return {
           success: true,
           redirectTo: "/",
@@ -150,7 +161,7 @@ function App() {
           <RefineSnackbarProvider>
             <DevtoolsProvider>
               <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                dataProvider={dataProvider("http://localhost:8080/api")}
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
