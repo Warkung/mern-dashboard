@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  CircularProgress,
   FormControl,
   TextField,
   Typography,
@@ -11,7 +12,6 @@ import {
 } from "@mui/material";
 import { PhotoCamera } from "@mui/icons-material";
 import { FormProps } from "../../interfaces/common";
-import CustomButton from "./CustomButton";
 
 const itemForSelect = [
   { value: "apartment" },
@@ -27,14 +27,13 @@ export default function Form({
   formLoading,
   handleSubmit,
   handleImageChange,
-  PropertyImages,
+  propertyImage,
 }: FormProps) {
   return (
     <Box
       margin={"auto"}
       width={{ lg: "70%", md: "80%", xs: "90%" }}
       paddingInline={{ lg: 10, md: 5, xs: 2 }}
-      
     >
       <Typography
         fontSize={25}
@@ -150,18 +149,25 @@ export default function Form({
               color="#808191"
               sx={{ wordBreak: "break-all" }}
             >
-              {PropertyImages?.name || "No file selected"}
+              {propertyImage?.name || "No file selected"}
             </Typography>
           </Stack>
 
           <Stack direction={"column"} gap={1} justifyContent={"center"}>
             <Stack>
-              <CustomButton
-                type={type}
-                title={formLoading ? "Submitting..." : "Submit"}
-                backgroundColor="#475be8"
-                color="white"
-              />
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                disabled={formLoading}
+                sx={{ backgroundColor: "#475be8", color: "white" }}
+              >
+                {formLoading ? (
+                  <CircularProgress size={24} sx={{ color: "white" }} />
+                ) : (
+                  "Submit"
+                )}
+              </Button>
             </Stack>
           </Stack>
         </form>
