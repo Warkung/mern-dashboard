@@ -125,10 +125,10 @@ export default function Form({
             direction={{ lg: "row", xs: "column" }}
             gap={2}
             alignItems={{ lg: "center", xs: "flex-start" }}
-            justifyContent={"space-between"}
+            justifyContent={"start  "}
             mb={2}
           >
-            <Stack direction="row" gap={2}>
+            <Stack direction="row"  gap={2}>
               <Button
                 component="label"
                 variant="outlined"

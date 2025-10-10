@@ -25,3 +25,13 @@ export interface FormProps {
   onFinishHandler: (values: FieldValues) => Promise<void>;
   propertyImage: { name: string; url: string };
 }
+
+export interface PropertyCardProps {
+  id: string;
+  title: string;
+  description: string;
+  propertyType: string;
+  price: number;
+  location: string;
+  photo: string;
+}

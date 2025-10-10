@@ -44,7 +44,7 @@ import { ThemedLayout } from "./components/layout";
 import {
   Agent,
   AgentProfile,
-  AllProperty,
+  AllProperties,
   CreateProperty,
   EditProperty,
   HomePage,
@@ -59,7 +59,6 @@ axiosInstance.interceptors.request.use((config) => {
   if (config.headers) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
-
   return config;
 });
 
@@ -77,7 +76,7 @@ function App() {
             avatar: profileObj.picture,
           }
         );
-
+        
         if (res.status === 200) {
           localStorage.setItem(
             "user",
@@ -238,7 +237,7 @@ function App() {
                     </Route>
 
                     <Route path="/properties">
-                      <Route index element={<AllProperty />} />
+                      <Route index element={<AllProperties />} />
                       <Route path="create" element={<CreateProperty />} />
                     </Route>
 
