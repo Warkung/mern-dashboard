@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { useTable } from "@refinedev/core";
 import { useNavigate } from "react-router";
 import { PropertyCard } from "../components";
+import PropertyCardV2 from "../components/common/propertyCardV2";
 
 export default function AllProperties() {
   const navigate = useNavigate();
@@ -25,16 +26,39 @@ export default function AllProperties() {
   return (
     <Box>
       <Box mt={"20px"} display={"flex"} flexWrap={"wrap"} gap={3}>
-        {allProperties.map((property) => (
-          <PropertyCard
-            key={property._id}
-            id={property._id}
-            price={property.price}
-            photo={property.photo}
-          ></PropertyCard>
-        ))}
+        {allProperties.map(
+          ({
+            _id: id,
+            title,
+            description,
+            price,
+            propertyType,
+            location,
+            photo,
+          }) => (
+            // <PropertyCardV2
+            //   key={id}
+            //   id={id as string}
+            //   title={title}
+            //   description={description}
+            //   propertyType={propertyType}
+            //   price={price}
+            //   location={location}
+            //   photo={photo}
+            // />
+            <PropertyCard
+              key={id}
+              id={id as string}
+              title={title}
+              description={description}
+              price={price}
+              propertyType={propertyType}
+              location={location}
+              photo={photo}
+            />
+          )
+        )}
       </Box>
-      
     </Box>
   );
 }

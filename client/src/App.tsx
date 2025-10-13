@@ -76,7 +76,7 @@ function App() {
             avatar: profileObj.picture,
           }
         );
-        
+
         if (res.status === 200) {
           localStorage.setItem(
             "user",
@@ -176,6 +176,7 @@ function App() {
                     name: "properties",
                     list: "/properties",
                     create: "/properties/create",
+                    show: "/properties/:id",
                     meta: {
                       icon: <VillaOutlined />,
                     },
@@ -239,6 +240,7 @@ function App() {
                     <Route path="/properties">
                       <Route index element={<AllProperties />} />
                       <Route path="create" element={<CreateProperty />} />
+                      <Route path="show/:id" element={<PropertyDetail />} />
                     </Route>
 
                     <Route path="*" element={<ErrorComponent />} />
