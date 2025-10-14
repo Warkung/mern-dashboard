@@ -24,6 +24,7 @@ export default function CustomButton({
         fontSize: "16px",
         fontWeight: 600,
         textTransform: "capitalize",
+        gap: 1,
         "&:hover": {
           opacity: 0.9,
           backgroundColor,

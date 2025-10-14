@@ -1,22 +1,26 @@
-import { Place, Star } from "@mui/icons-material";
+import { ChatBubble, Edit, Place, Star } from "@mui/icons-material";
 import { Box, Stack, Typography } from "@mui/material";
-import { BaseRecord, useGetIdentity, useShow } from "@refinedev/core";
-import { useNavigate, useParams } from "react-router";
-import { PropertyType } from "../interfaces/property";
-
-const checkImage = (url: string) => {
-  const image = new Image();
-  image.src = url;
-  return image.width !== 0 && image.height !== 0;
-};
+import { useGetIdentity, useShow } from "@refinedev/core";
+import CustomButton from "../components/common/CustomButton";
+import { useNavigate } from "react-router";
 
 export default function PropertyDetail() {
   const navigate = useNavigate();
   const { data: user } = useGetIdentity();
-
   const { query } = useShow<any>();
-
   const { data, isLoading, isError } = query;
+  // Provide a default structure to prevent errors on initial render
+  const propertyDetails = data?.data ?? {
+    _id: "",
+    description: "",
+    location: "",
+    photo: "",
+    price: 0,
+    propertyType: "",
+    title: "",
+    creator: { avatar: "", name: "" },
+  };
+
   const {
     description,
     location,
@@ -26,12 +30,12 @@ export default function PropertyDetail() {
     title,
     creator,
     _id: id,
-  } = data?.data ?? {};
-  console.log(creator);
-  
+  } = propertyDetails;
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error!!!</div>;
+
+  const isCurrentUser = user?.email === creator?.email;
 
   return (
     <Box
@@ -156,6 +160,7 @@ export default function PropertyDetail() {
           display={"flex"}
           flexDirection={"column"}
           gap={"20px"}
+          bgcolor={"#fcfcfc"}
         >
           <Stack
             p={2}
@@ -164,6 +169,7 @@ export default function PropertyDetail() {
             justifyContent={"center"}
             alignItems={"center"}
             border={"1px solid #e4e4e4"}
+            borderRadius={2}
           >
             <Stack
               mt={2}
@@ -173,15 +179,60 @@ export default function PropertyDetail() {
             >
               <img
                 src={
-                  checkImage(creator.avatar)
-                    ? creator.avatar
-                    : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                  creator?.avatar ||
+                  "https://cdn-icons-png.flaticon.com/512/149/149071.png"
                 }
                 alt={"avatar"}
                 width={100}
                 height={100}
-                style={{ objectFit: "cover", borderRadius: "50%" }}
+                style={{ borderRadius: "50%", objectFit: "cover" }}
               />
+              <Box mt={2}>
+                <Typography color="#11142d" fontSize={16} fontWeight={600}>
+                  {creator?.name}
+                </Typography>
+                <Typography fontSize={14} mt={2} color="#808191">
+                  Agent
+                </Typography>
+              </Box>
+              <Stack>
+                <Typography
+                  mt={"2px"}
+                  color="#808191"
+                  fontSize={14}
+                  fontWeight={600}
+                  textAlign={"center"}
+                  display={"flex"}
+                  alignItems={"center"}
+                  gap={0.5}
+                >
+                  <Place sx={{ color: "#f2c94c" }} /> <p>{location}</p>
+                </Typography>
+                <Typography
+                  mt={"1px"}
+                  fontSize={16}
+                  fontWeight={600}
+                  color="#11142d"
+                >
+                  {creator?.allProperties.length} Properties
+                </Typography>
+              </Stack>
+              <Stack
+                width={"100%"}
+                mt={"25px"}
+                direction={"row"}
+                flexWrap={"wrap"}
+                gap={2}
+              >
+                <CustomButton
+                  title={isCurrentUser ? "Edit" : "Message"}
+                  backgroundColor={"#475be8"}
+                  color={"#fcfcfc"}
+                  fullWidth
+                  icon={isCurrentUser ? <Edit /> : <ChatBubble />}
+                  handleClick={() => navigate(`/properties/edit/${id}`)}
+                />
+              </Stack>
             </Stack>
           </Stack>
         </Box>

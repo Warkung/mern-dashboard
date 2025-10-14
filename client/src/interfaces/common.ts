@@ -24,6 +24,10 @@ export interface FormProps {
   handleImageChange: (file: File) => void;
   onFinishHandler: (values: FieldValues) => Promise<void>;
   propertyImage: { name: string; url: string };
+  // optional initial value for property type (useful when editing a property)
+  initialPropertyType?: string;
+  // optional raw property data (used by pages when editing)
+  propertyData?: any;
 }
 
 export interface PropertyCardProps {

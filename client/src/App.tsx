@@ -177,6 +177,7 @@ function App() {
                     list: "/properties",
                     create: "/properties/create",
                     show: "/properties/show/:id",
+                    edit: "/properties/edit/:id",
                     meta: {
                       icon: <VillaOutlined />,
                     },
@@ -241,6 +242,7 @@ function App() {
                       <Route index element={<AllProperties />} />
                       <Route path="create" element={<CreateProperty />} />
                       <Route path="show/:id" element={<PropertyDetail />} />
+                      <Route path="edit/:id" element={<CreateProperty />} />
                     </Route>
 
                     <Route path="*" element={<ErrorComponent />} />

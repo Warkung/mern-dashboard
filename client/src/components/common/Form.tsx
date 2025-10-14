@@ -28,6 +28,7 @@ export default function Form({
   handleSubmit,
   handleImageChange,
   propertyImage,
+  propertyData,
 }: FormProps) {
   return (
     <Box
@@ -73,24 +74,20 @@ export default function Form({
           />
 
           <Stack direction={{ xs: "column", sm: "row" }} gap={2}>
-            <FormControl sx={{ flex: 2 }}>
-              <InputLabel shrink id="property-type-select-label">
+            <FormControl sx={{ flex: 1 }}>
+              <InputLabel id="property-type-select-label">
                 Select Property Type
               </InputLabel>
               <Select
-                label="Select Property Type"
                 labelId="property-type-select-label"
                 variant="outlined"
                 color="info"
-                displayEmpty
                 required
-                defaultValue=""
+                defaultValue={propertyData?.propertyType || ""}
+                label="Select Property Type"
                 sx={{ textTransform: "capitalize" }}
                 {...register("propertyType", { required: true })}
               >
-                <MenuItem value="" disabled>
-                  <em style={{ color: "#aca5a5ff" }}>Select Property Type</em>
-                </MenuItem>
                 {itemForSelect.map((item, index) => (
                   <MenuItem
                     key={index}
@@ -128,7 +125,7 @@ export default function Form({
             justifyContent={"start  "}
             mb={2}
           >
-            <Stack direction="row"  gap={2}>
+            <Stack direction="row" gap={2}>
               <Button
                 component="label"
                 variant="outlined"

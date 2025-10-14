@@ -189,7 +189,7 @@ export default function PropertyDetail() {
               </Stack>
 
               <Typography mt={1} fontSize={16} fontWeight={600} color="#11142D">
-                {property.creator?.length} Properties
+                {property.creator.allProperties.length} Properties
               </Typography>
             </Stack>
 
