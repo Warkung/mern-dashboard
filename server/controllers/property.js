@@ -45,7 +45,9 @@ exports.getAllProperties = async (req, res) => {
 exports.getPropertyDetail = async (req, res) => {
   try {
     const { id } = req.params;
-    const propertyExists = await propertyModel.findOne({ _id: id });
+    const propertyExists = await propertyModel
+      .findOne({ _id: id })
+      .populate("creator");
     if (!propertyExists) return res.status(404).send("Property not found");
     res.status(200).send(propertyExists);
   } catch (error) {
