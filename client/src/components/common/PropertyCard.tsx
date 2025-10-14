@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { PlaceOutlined } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { PropertyCardProps } from "../../interfaces/common";
 
 export default function PropertyCard({
@@ -24,7 +24,10 @@ export default function PropertyCard({
     <Card
       component={Link}
       to={`/properties/show/${id}`}
-      sx={(theme) => ({
+      sx={(theme: {
+        transitions: { create: (arg0: string[]) => any };
+        shadows: any[];
+      }) => ({
         maxWidth: 330,
         borderRadius: "12px", // Slightly larger border-radius for the card itself
         padding: "12px", // Increased padding inside the card

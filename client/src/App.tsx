@@ -176,7 +176,7 @@ function App() {
                     name: "properties",
                     list: "/properties",
                     create: "/properties/create",
-                    show: "/properties/:id",
+                    show: "/properties/show/:id",
                     meta: {
                       icon: <VillaOutlined />,
                     },

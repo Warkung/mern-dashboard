@@ -9,7 +9,7 @@ const {
 
 router.route("/properties").get(getAllProperties).post(createProperty);
 router
-  .route("/property/:id")
+  .route("/properties/:id")
   .get(getPropertyDetail)
   .put(updateProperty)
   .patch(updateProperty)
